@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaif's Poetic Terminal</title>
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #33ff33;
+      font-family: 'Courier New', monospace;
+      padding: 50px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff99cc;
+      text-shadow: 0 0 5px #ff99cc;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #terminal {
+      white-space: pre-wrap;
+      border-left: 2px solid #33ff33;
+      padding-left: 10px;
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #33ff33; }
+    }
+
+    .flower {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      animation: float 15s linear infinite;
+      opacity: 0.85;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-150vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>~ Khayal-e-Kaif ~</h1>
+  <div id="terminal"></div>
+
+  <!-- Floating images -->
+  <img src="flower_1.png" class="flower" style="left: 10%; animation-delay: 0s;">
+  <img src="flower_2.png" class="flower" style="left: 25%; animation-delay: 3s;">
+  <img src="flower_3.png" class="flower" style="left: 45%; animation-delay: 6s;">
+  <img src="flower_4.png" class="flower" style="left: 65%; animation-delay: 9s;">
+  <img src="flower_5.png" class="flower" style="left: 80%; animation-delay: 12s;">
+
+  <script>
+    const poemLines = [
+      "Tumhe me khule dil se apnata hoon...",
+      "Tum bolo me sari umar sunne ko tarasa hoon...",
+      "Rishta jo bhi ho mohabbat, yaar, pyar — kya farak padta he...",
+      "Tumhara sath hona, mere hatho me tumhara hath hona kaafi lagta he...",
+      "",
+      "Tum maat baya karo apne Kaif ko in lafzo me...",
+      "Tumhare safura akho se mene sab padh liya he...",
+      "",
+      "Aj akho me assu dekh ke lauta hoon,",
+      "Na jaane ky kuch kho ke lauta hoon...",
+      "",
+      "Tum mere bano na bano ya khuda ki marji he...",
+      "Me tumhara hoon — ye mera faisla he...",
+      "",
+      "Tumse Mila tho mere berang se jindgi me rang bhar gaya...",
+      "Tum khete ho 'tumse bichdu aur behaal na banu' — ye mumkin nhi...",
+      "Tum khete ho 'kuch khass nhi me'...",
+      "",
+      "Lakin...",
+      "",
+      "aj Tumhare baate sune ka Maan Kiya...",
+      "Tumhare lubo per muskurata bandhne ka Maan Kiya...",
+      "Tumse kiye har wade ko bss bina shart nibhane ka Maan Kiya...",
+      "tumhe apna khne ka maan kiya..."
+    ];
+
+    const terminal = document.getElementById("terminal");
+    let line = 0;
+    let char = 0;
+
+    function typeLine() {
+      if (line < poemLines.length) {
+        if (char < poemLines[line].length) {
+          terminal.textContent += poemLines[line][char++];
+          setTimeout(typeLine, 50);
+        } else {
+          terminal.textContent += "\n";
+          line++;
+          char = 0;
+          setTimeout(typeLine, 400);
+        }
+      }
+    }
+
+    typeLine();
+  </script>
+
+</body>
+</html>
